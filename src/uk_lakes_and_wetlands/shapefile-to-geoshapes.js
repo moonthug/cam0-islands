@@ -24,7 +24,7 @@ module.exports = function () {
 
         let count = 0;
 
-        shapefile.open('./GLWD-level2/glwd_2.shp')
+        shapefile.open(__dirname + '/GLWD-level2/glwd_2.shp')
           .then(source => source.read()
             .then(function log(result) {
               if (result.done) {
@@ -65,7 +65,9 @@ module.exports = function () {
 
               return source.read().then(log);
             })
-          );
+            .catch(reject)
+          )
+          .catch(reject);
       });
   });
 };

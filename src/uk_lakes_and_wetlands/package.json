@@ -1,7 +1,7 @@
 {
   "name": "uk_lakes_and_wetlands",
   "version": "1.0.0",
-  "main": "shapefile-to-geoshapes.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
