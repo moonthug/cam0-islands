@@ -1,0 +1,19 @@
+{
+  "name": "cam0-islands",
+  "version": "0.1.0",
+  "description": "cam0 Island Creators",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moonthug/cam0-islands.git"
+  },
+  "author": "alex <alex@polyglot.rodeo>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moonthug/cam0-islands/issues"
+  },
+  "homepage": "https://github.com/moonthug/cam0-islands#readme"
+}
