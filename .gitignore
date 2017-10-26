@@ -93,7 +93,6 @@ cmake-build-debug/
 ## Plugin-specific files:
 
 # IntelliJ
-out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -113,3 +112,4 @@ fabric.properties
 ### Project
 
 .idea/
+out/*.json

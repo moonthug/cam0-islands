@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/moonthug/cam0-islands/issues"
   },
-  "homepage": "https://github.com/moonthug/cam0-islands#readme"
+  "homepage": "https://github.com/moonthug/cam0-islands#readme",
+  "dependencies": {
+    "shapefile": "^0.6.6"
+  }
 }
