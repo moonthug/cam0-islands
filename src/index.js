@@ -1,4 +1,3 @@
-const fs = require('fs');
 const path = require('path');
 
 let islands = [
@@ -7,17 +6,16 @@ let islands = [
 ];
 
 let islandFuncs = islands.map(filename => {
-  let outputFilename = path.resolve(path.join(__dirname, '..', 'out', `${filename}.json`));
-  let writeStream = fs.createWriteStream(outputFilename, {'flags': 'w'});
-
   let islandFuncFile = path.resolve(path.join(__dirname, filename));
-  return require(islandFuncFile)(writeStream, {logger: console.log});
+  let outputFilename = path.resolve(path.join(__dirname, '..', 'out', `${filename}.json`));
+  return require(islandFuncFile)(outputFilename, {logger: console.log});
 });
 
 Promise.all(islandFuncs)
-  .then(results => {
-    console.dir(results);
+  .then(() => {
+    console.log('complete');
   })
   .catch(err => {
-    throw err;
+    console.log(err);
+    process.exit(1);
   });

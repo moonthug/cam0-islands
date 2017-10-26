@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/moonthug/cam0-islands#readme",
   "dependencies": {
+    "jsonstream": "^1.0.3",
     "shapefile": "^0.6.6"
   }
 }

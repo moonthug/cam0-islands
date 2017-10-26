@@ -1,14 +1,20 @@
+const fs = require('fs');
 const path = require('path');
 
-const ShapefileImporter = require('./importer/shapefile');
+const ShapefileImporter = require('./importers/shapefile');
+const ShapefileConverter = require('./converters/shapefile');
 
-module.exports = function(writestream, options) {
+module.exports = function(outputFilename, options) {
   return new Promise((resolve, reject) => {
-    let waterImporter = new ShapefileImporter();
-    waterImporter
+    let name = 'uk_lakes_shapes';
+
+    let geoShapesFilename = '/tmp/uk_lakes_shapes.json';
+    let writeStream = fs.createWriteStream(geoShapesFilename, {'flags': 'w'});
+
+    let importer = new ShapefileImporter()
       .setFilename(path.resolve(path.join(__dirname, 'data', 'uk_lakes_and_wetlands', 'GLWD-level2', 'glwd_2.shp')))
-      .setWriteStream(writestream)
-      .setLogger(options.logger)
+      .setWriteStream(writeStream)
+      .setLogger(options.logger, name)
       .setMapper(d => {
         return new Promise(resolve => {
           return resolve({
@@ -16,8 +22,15 @@ module.exports = function(writestream, options) {
             ll: d.geometry.coordinates
           });
         });
-      })
-      .read()
+      });
+
+    let converter = new ShapefileConverter()
+      .setInputFilename(geoShapesFilename)
+      .setOutputFilename(outputFilename)
+      .setLogger(options.logger, name);
+
+    importer.importFile()
+      .then(() => converter.convert())
       .then(result => {
         resolve(result);
       })
